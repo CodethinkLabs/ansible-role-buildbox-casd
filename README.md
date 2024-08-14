@@ -23,6 +23,7 @@ A [default configuration](defaults/main.yml) is provided in this role. It establ
 - `casd_proxy_{cas,ac,asset,execution}_client_{cert,key}`: TLS keypair used for client authentication against the remote server
 - `casd_metrics_mode`: option passed to `--metrics-mode` of buildbox-casd
 - `casd_metrics_publish_interval_secs`: how often metrics get published by buildbox-casd, in seconds
+- `casd_metrics_prefix`: Set a prefix on metric names, if unset, the `--metrics-prefix` argument is not passed to buildbox-casd
 - `casd_labels`: a dictionary containing a set of labels applied to the container
 
 ## Example Configurations
