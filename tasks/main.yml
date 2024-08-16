@@ -56,6 +56,7 @@
     name: "{{ casd_network }}"
     connected: "{{ [] if casd_bind_path else casd_network_connected_containers }}"
     appends: true
+    docker_host: "{{ casd_docker_host }}"
 
 - name: Bring up buildbox-casd
   community.docker.docker_container:
@@ -72,3 +73,6 @@
     labels: "{{ casd_labels }}"
     comparisons:
       '*': strict
+    docker_host: "{{ casd_docker_host }}"
+    log_driver: "{{ casd_log_driver }}"
+    log_options: "{{ casd_log_options }}"

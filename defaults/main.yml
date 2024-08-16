@@ -6,6 +6,7 @@ casd_cache: "/srv/buildbox_casd/cache"
 casd_proxy_certdir: "/srv/buildbox_casd/certs"
 
 # container config
+casd_docker_host: "unix:///var/run/docker.sock"
 casd_image: "registry.gitlab.com/freedesktop-sdk/infrastructure/freedesktop-sdk-docker-images/buildbox-casd"
 casd_container: "buildbox-casd"
 casd_network: "{{ casd_container }}-net"
@@ -13,6 +14,8 @@ casd_network_connected_containers: []
 casd_port: 11001
 casd_publish_ports: []
 casd_labels: {}
+casd_log_driver: ""
+casd_log_options: {}
 
 # casd metrics
 # Must be one of udp://<statsd_server>:<port>, file://<path> or stderr
