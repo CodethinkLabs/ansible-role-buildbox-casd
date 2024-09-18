@@ -16,6 +16,7 @@ A [default configuration](defaults/main.yml) is provided in this role. It establ
 - `casd_published_ports`: a list of docker port specifications to be published. This does not affect whether the port on which buildbox-casd is listening is exposed.
 - `casd_bind_address`: the address the service listens to inside the container
 - `casd_quota_high`: the maximum local cache size
+- `casd_reserved`: Reserved disk space
 - `casd_cache_mnt`: the path to bindmount the cache to in the container
 - `casd_cmd`: the entrypoint of the container
 - `casd_bind_path`: path to a UNIX socket to serve on.  If set, `casd_bind_address` and `casd_port` are ignored entirely and the service is not exposed.

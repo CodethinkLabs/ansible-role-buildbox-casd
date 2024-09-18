@@ -31,11 +31,14 @@ casd_metrics_args: >-
 casd_bind_address: "0.0.0.0"
 casd_bind_path: ""
 casd_bind: "{{ 'unix:' ~ casd_bind_path if casd_bind_path else casd_bind_address ~ ':' ~ casd_port }}"
-casd_quota_high: "200G"
+casd_quota_high: ""
+casd_reserved: ""
 casd_cache_mnt: "/srv"
 casd_certs_mnt: "/certs"
 casd_cmd: >-
-  --verbose --bind {{ casd_bind }} --quota-high {{ casd_quota_high }}
+  --verbose --bind {{ casd_bind }}
+  {% if casd_quota_high %}--quota-high {{ casd_quota_high }}{% endif %}
+  {% if casd_reserved %}--reserved {{ casd_reserved }}{% endif %}
   {{ casd_metrics_args }} {{ casd_proxy_cas_args }} {{ casd_proxy_ac_args }}
   {{ casd_proxy_asset_args }} {{ casd_proxy_execution_args }} {{ casd_cache_mnt }}
 casd_default_mounts:
