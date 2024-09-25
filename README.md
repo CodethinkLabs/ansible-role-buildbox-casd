@@ -10,6 +10,7 @@ A [default configuration](defaults/main.yml) is provided in this role. It establ
 - `casd_container`: the container name
 - `casd_network`: the name of the Docker network to create and attach the service container to
 - `casd_network_connected_containers`: a list of containers to connect to the network being created for buildbox-casd
+- `casd_log_level`: set log level for casd, possible values debug, error, info, trace, warning. Default is error
 - `casd_log_driver`: the log driver to use for the buildbox-casd container
 - `casd_log_options`: additional options to pass to the log driver
 - `casd_port`: the port the service listens to in the container and which is exposed on the container

@@ -38,7 +38,7 @@ casd_reserved: ""
 casd_cache_mnt: "/srv"
 casd_certs_mnt: "/certs"
 casd_cmd: >-
-  --verbose --bind {{ casd_bind }}
+  --bind {{ casd_bind }}
   {% if casd_loglevel %}--log-level {{ casd_loglevel }}{% endif %}
   {% if casd_quota_high %}--quota-high {{ casd_quota_high }}{% endif %}
   {% if casd_reserved %}--reserved {{ casd_reserved }}{% endif %}
