@@ -31,12 +31,15 @@ casd_metrics_args: >-
 casd_bind_address: "0.0.0.0"
 casd_bind_path: ""
 casd_bind: "{{ 'unix:' ~ casd_bind_path if casd_bind_path else casd_bind_address ~ ':' ~ casd_port }}"
+# (debug, error, info, trace, warning) [optional, default = "error"]
+casd_loglevel: ""
 casd_quota_high: ""
 casd_reserved: ""
 casd_cache_mnt: "/srv"
 casd_certs_mnt: "/certs"
 casd_cmd: >-
-  --verbose --bind {{ casd_bind }}
+  --bind {{ casd_bind }}
+  {% if casd_loglevel %}--log-level {{ casd_loglevel }}{% endif %}
   {% if casd_quota_high %}--quota-high {{ casd_quota_high }}{% endif %}
   {% if casd_reserved %}--reserved {{ casd_reserved }}{% endif %}
   {{ casd_metrics_args }} {{ casd_proxy_cas_args }} {{ casd_proxy_ac_args }}
