@@ -18,9 +18,10 @@ casd_log_driver: ""
 casd_log_options: {}
 
 # casd metrics
+casd_metrics_enabled: true
 # Must be one of udp://<statsd_server>:<port>, file://<path> or stderr
 casd_metrics_mode: "stderr"
-casd_metrics_publish_interval_secs: 5
+casd_metrics_publish_interval_secs: 15
 casd_metrics_prefix: ""
 casd_metrics_args: >-
   --metrics-mode {{ casd_metrics_mode }}
@@ -44,7 +45,8 @@ casd_cmd: >-
   {% if casd_quota_high %}--quota-high {{ casd_quota_high }}{% endif %}
   {% if casd_quota_low %}--quota-low {{ casd_quota_low }}{% endif %}
   {% if casd_reserved %}--reserved {{ casd_reserved }}{% endif %}
-  {{ casd_metrics_args }} {{ casd_proxy_cas_args }} {{ casd_proxy_ac_args }}
+  {% if casd_metrics_enabled %}{{ casd_metrics_args }}{% endif %}
+  {{ casd_proxy_cas_args }} {{ casd_proxy_ac_args }}
   {{ casd_proxy_asset_args }} {{ casd_proxy_execution_args }} {{ casd_cache_mnt }}
 casd_default_mounts:
   - "{{ casd_cache }}:{{ casd_cache_mnt }}"
