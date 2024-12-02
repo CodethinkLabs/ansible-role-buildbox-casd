@@ -22,13 +22,13 @@
   ansible.builtin.file:
     path: "{{ casd_cache }}"
     state: directory
-    mode: "600"
+    mode: "700"
 
 - name: Create certificate directory
   ansible.builtin.file:
     path: "{{ casd_proxy_certdir }}"
     state: directory
-    mode: "600"
+    mode: "700"
   when: casd_proxy_certdir
 
 - name: Copy certificates over
