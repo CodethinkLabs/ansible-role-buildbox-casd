@@ -3,7 +3,7 @@
 - name: Validate configuration
   ansible.builtin.fail:
     msg: key/certificate content is provided but certificate directory is not defined
-  when: not casd_proxy_certdir and vars[item]
+  when: (casd_proxy_certdir is undefined or casd_proxy_certdir == "") and lookup('ansible.builtin.vars', item) is defined
   with_items:
     - casd_proxy_cas_server_cert
     - casd_proxy_cas_client_cert
@@ -29,7 +29,7 @@
     path: "{{ casd_proxy_certdir }}"
     state: directory
     mode: "700"
-  when: casd_proxy_certdir
+  when: casd_proxy_certdir is defined and casd_proxy_certdir != ""
 
 - name: Copy certificates over
   ansible.builtin.copy:
@@ -49,7 +49,7 @@
     - { filename: "execution_server.crt", content: "{{ casd_proxy_execution_server_cert }}" }
     - { filename: "execution_client.crt", content: "{{ casd_proxy_execution_client_cert }}" }
     - { filename: "execution_client.key", content: "{{ casd_proxy_execution_client_key }}" }
-  when: casd_proxy_certdir
+  when: casd_proxy_certdir is defined and casd_proxy_certdir != ""
 
 - name: Create network for buildbox-casd
   community.docker.docker_network:
