@@ -16,6 +16,8 @@ casd_publish_ports: []
 casd_labels: {}
 casd_log_driver: ""
 casd_log_options: {}
+# how many times to retry bringing up the container if it fails
+casd_container_retries: 3
 
 # casd metrics
 casd_metrics_enabled: true

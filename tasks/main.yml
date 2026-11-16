@@ -78,3 +78,10 @@
     docker_host: "{{ casd_docker_host }}"
     log_driver: "{{ casd_log_driver }}"
     log_options: "{{ casd_log_options }}"
+  # Stopping a podman container whose conmon process has died fails once
+  # ("conmon exited prematurely"); podman marks it as stopped and the next
+  # attempt succeeds
+  register: casd_container_result
+  retries: "{{ casd_container_retries }}"
+  delay: 5
+  until: casd_container_result is succeeded

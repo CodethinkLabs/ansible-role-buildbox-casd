@@ -13,6 +13,7 @@ A [default configuration](defaults/main.yml) is provided in this role. It establ
 - `casd_log_level`: set log level for casd, possible values debug, error, info, trace, warning. Default is error
 - `casd_log_driver`: the log driver to use for the buildbox-casd container
 - `casd_log_options`: additional options to pass to the log driver
+- `casd_container_retries`: how many times to retry bringing up the container if it fails, for example when the container has to be recreated and stopping it fails. Default is 3
 - `casd_port`: the port the service listens to in the container and which is exposed on the container
 - `casd_published_ports`: a list of docker port specifications to be published. This does not affect whether the port on which buildbox-casd is listening is exposed.
 - `casd_bind_address`: the address the service listens to inside the container
